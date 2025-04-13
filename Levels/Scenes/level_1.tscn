@@ -87,6 +87,7 @@ text = "Coin"
 
 [node name="CoinSign" type="TextureRect" parent="UI"]
 modulate = Color(1, 1, 0, 1)
+layout_mode = 0
 offset_left = 1125.0
 offset_top = 13.0
 offset_right = 1136.0
