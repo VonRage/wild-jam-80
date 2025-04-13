@@ -1,0 +1,217 @@
+[gd_scene load_steps=26 format=3 uid="uid://d4giathpokb4y"]
+
+[ext_resource type="Texture2D" uid="uid://uw7k10evo4od" path="res://Art/Temporarily-Towers/1.png" id="1_iw2f4"]
+[ext_resource type="Script" uid="uid://b3qlfqhopqc3v" path="res://Towers/Scripts/archer_tower.gd" id="1_p2o07"]
+[ext_resource type="Texture2D" uid="uid://cvvi7r3x6wg2a" path="res://Art/Temporarily-Towers/1 Upgrade/1.png" id="2_ecpoj"]
+[ext_resource type="Texture2D" uid="uid://cc20aldom7pvk" path="res://Art/Temporarily-AracherUnits/1/D_Idle.png" id="9_o2w6w"]
+[ext_resource type="Texture2D" uid="uid://c2xisffbw2h2p" path="res://Art/Temporarily-AracherUnits/1/U_Idle.png" id="10_7is4k"]
+[ext_resource type="Texture2D" uid="uid://du8ajwegd10ep" path="res://Art/Temporarily-AracherUnits/2/S_Idle.png" id="11_j5bd8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iw2f4"]
+atlas = ExtResource("2_ecpoj")
+region = Rect2(210, 0, 70, 130)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7uchf"]
+atlas = ExtResource("2_ecpoj")
+region = Rect2(140, 0, 70, 130)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8mlq2"]
+atlas = ExtResource("2_ecpoj")
+region = Rect2(70, 0, 70, 130)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6efqn"]
+atlas = ExtResource("2_ecpoj")
+region = Rect2(0, 0, 70, 130)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ifk5r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iw2f4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7uchf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8mlq2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6efqn")
+}],
+"loop": true,
+"name": &"Destory_1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_iw2f4")
+}],
+"loop": true,
+"name": &"Level_1",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5sl77"]
+radius = 45.8912
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ifk5r"]
+atlas = ExtResource("9_o2w6w")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ov2iq"]
+atlas = ExtResource("9_o2w6w")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ax0he"]
+atlas = ExtResource("9_o2w6w")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pljcr"]
+atlas = ExtResource("9_o2w6w")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cy6oh"]
+atlas = ExtResource("10_7is4k")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wcf6b"]
+atlas = ExtResource("10_7is4k")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ey0oe"]
+atlas = ExtResource("10_7is4k")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y1vc4"]
+atlas = ExtResource("10_7is4k")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gn7ev"]
+atlas = ExtResource("11_j5bd8")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iomnm"]
+atlas = ExtResource("11_j5bd8")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1srsm"]
+atlas = ExtResource("11_j5bd8")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xuirt"]
+atlas = ExtResource("11_j5bd8")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ul4vg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ifk5r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ov2iq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ax0he")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pljcr")
+}],
+"loop": true,
+"name": &"IdleBack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cy6oh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wcf6b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ey0oe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y1vc4")
+}],
+"loop": true,
+"name": &"IdleFront",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gn7ev")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iomnm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1srsm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xuirt")
+}],
+"loop": true,
+"name": &"IdleLeft",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gn7ev")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iomnm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1srsm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xuirt")
+}],
+"loop": true,
+"name": &"IdleRight",
+"speed": 5.0
+}]
+
+[node name="ArcherTower" type="Node2D"]
+script = ExtResource("1_p2o07")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ifk5r")
+animation = &"Destory_1"
+frame_progress = 0.835076
+
+[node name="Archer" type="Node2D" parent="."]
+position = Vector2(-1, 24)
+metadata/_edit_group_ = true
+
+[node name="DectectionArea" type="Area2D" parent="Archer" groups=["Tower"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Archer/DectectionArea"]
+position = Vector2(1, 7)
+shape = SubResource("CircleShape2D_5sl77")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Archer"]
+sprite_frames = SubResource("SpriteFrames_ul4vg")
+animation = &"IdleRight"
+flip_h = true
+
+[node name="HealthLabel" type="Label" parent="."]
+offset_left = -21.0
+offset_top = -36.0
+offset_right = 19.0
+offset_bottom = -13.0
+
+[node name="HitTimer" type="Timer" parent="."]
+wait_time = 0.15
+
+[node name="AttackTimer" type="Timer" parent="."]
+wait_time = 2.5
+
+[node name="ShootPosition" type="Marker2D" parent="."]
+position = Vector2(-1, 30)
+
+[connection signal="area_entered" from="Archer/DectectionArea" to="." method="_on_dectection_area_area_entered"]
+[connection signal="area_exited" from="Archer/DectectionArea" to="." method="_on_dectection_area_area_exited"]
+[connection signal="timeout" from="HitTimer" to="." method="_on_hit_timer_timeout"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
