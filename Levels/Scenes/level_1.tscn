@@ -1,0 +1,139 @@
+[gd_scene load_steps=7 format=3 uid="uid://6hn3xsebubhs"]
+
+[ext_resource type="PackedScene" uid="uid://d4giathpokb4y" path="res://Towers/Scenes/archer_tower.tscn" id="1_cpxlu"]
+[ext_resource type="Script" uid="uid://b8p1pbuku8q05" path="res://Levels/Scripts/level_1.gd" id="1_mb5l5"]
+[ext_resource type="Texture2D" uid="uid://bvuth8au5q8n4" path="res://icon.svg" id="2_mb5l5"]
+[ext_resource type="Texture2D" uid="uid://bp2sodgoi7l7l" path="res://Art/white-square-1.webp" id="4_jxje7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jxje7"]
+size = Vector2(123.429, 123.871)
+
+[sub_resource type="Curve2D" id="Curve2D_jxje7"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 120, 72, 0, 0, 0, 0, 0, 72, 0, 0, 0, 0, -160, 72, 0, 0, 0, 0, -160, 224, 0, 0, 0, 0, -248, 224)
+}
+point_count = 5
+
+[node name="Level_1" type="Node2D"]
+script = ExtResource("1_mb5l5")
+
+[node name="ArcherTower" parent="." instance=ExtResource("1_cpxlu")]
+position = Vector2(603, 123)
+
+[node name="HealthLabel" parent="ArcherTower" index="2"]
+metadata/_edit_use_anchors_ = true
+
+[node name="ArcherTower2" parent="." instance=ExtResource("1_cpxlu")]
+position = Vector2(427, 123)
+
+[node name="ArcherTower3" parent="." instance=ExtResource("1_cpxlu")]
+position = Vector2(355, 195)
+
+[node name="ArcherTower4" parent="." instance=ExtResource("1_cpxlu")]
+position = Vector2(475, 307)
+
+[node name="EndMark" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(292, 354)
+scale = Vector2(0.4375, 0.484375)
+texture = ExtResource("2_mb5l5")
+
+[node name="Area2D" type="Area2D" parent="EndMark"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EndMark/Area2D"]
+shape = SubResource("RectangleShape2D_jxje7")
+
+[node name="StartMark" type="Sprite2D" parent="."]
+modulate = Color(0, 0.972549, 0, 1)
+position = Vector2(744, 200)
+scale = Vector2(0.4375, 0.484375)
+texture = ExtResource("2_mb5l5")
+
+[node name="Projectiles" type="Node" parent="."]
+
+[node name="Path" type="Path2D" parent="."]
+position = Vector2(579, 131)
+curve = SubResource("Curve2D_jxje7")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="Buttons" type="Control" parent="UI"]
+anchors_preset = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="SpawnAttackers" type="Button" parent="UI/Buttons"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 11.0
+anchor_top = 4.675
+anchor_right = 11.0
+anchor_bottom = 4.675
+offset_left = 966.0
+offset_top = 567.0
+offset_right = 1077.0
+offset_bottom = 604.0
+text = "Attacker Unit"
+
+[node name="Coins" type="Label" parent="UI"]
+layout_mode = 0
+offset_left = 1080.0
+offset_top = 9.0
+offset_right = 1120.0
+offset_bottom = 32.0
+text = "Coin"
+
+[node name="CoinSign" type="TextureRect" parent="UI"]
+modulate = Color(1, 1, 0, 1)
+offset_left = 1125.0
+offset_top = 13.0
+offset_right = 1136.0
+offset_bottom = 30.0
+texture = ExtResource("4_jxje7")
+expand_mode = 5
+
+[node name="WinScreen" type="Control" parent="UI"]
+process_mode = 3
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="UI/WinScreen"]
+layout_mode = 0
+offset_right = 1151.0
+offset_bottom = 642.0
+color = Color(0.109804, 0.109804, 0.109804, 0.686275)
+
+[node name="Win" type="Label" parent="UI/WinScreen"]
+layout_mode = 0
+offset_left = 432.0
+offset_top = 160.0
+offset_right = 681.0
+offset_bottom = 300.0
+theme_override_font_sizes/font_size = 64
+text = "You Win!"
+
+[node name="NextLevel" type="Button" parent="UI/WinScreen"]
+layout_mode = 0
+offset_left = 536.0
+offset_top = 312.0
+offset_right = 626.0
+offset_bottom = 343.0
+text = "Next Level"
+
+[node name="MainMenu" type="Button" parent="UI/WinScreen"]
+layout_mode = 0
+offset_left = 536.0
+offset_top = 360.0
+offset_right = 626.0
+offset_bottom = 391.0
+text = "Main Menu"
+
+[connection signal="area_entered" from="EndMark/Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="pressed" from="UI/Buttons/SpawnAttackers" to="." method="_on_spawn_attackers_pressed"]
+[connection signal="pressed" from="UI/WinScreen/MainMenu" to="." method="_on_main_menu_pressed"]
+
+[editable path="ArcherTower"]
