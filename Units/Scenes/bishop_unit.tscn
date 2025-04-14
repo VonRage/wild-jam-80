@@ -1,0 +1,132 @@
+[gd_scene load_steps=15 format=3 uid="uid://dj2hbg0hjnnqt"]
+
+[ext_resource type="Script" uid="uid://fkm4h6e5lycv" path="res://Units/Scripts/bishop_unit.gd" id="1_ybt67"]
+[ext_resource type="Texture2D" uid="uid://cmhdh40g0dm0a" path="res://Art/Units/All_Units.png" id="2_vi38g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ybt67"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7gxj0"]
+size = Vector2(20, 30)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ybt67"]
+radius = 70.0071
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cujw4"]
+atlas = ExtResource("2_vi38g")
+region = Rect2(16, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4juki"]
+atlas = ExtResource("2_vi38g")
+region = Rect2(0, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ckwrp"]
+atlas = ExtResource("2_vi38g")
+region = Rect2(0, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7plbo"]
+atlas = ExtResource("2_vi38g")
+region = Rect2(16, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8infs"]
+atlas = ExtResource("2_vi38g")
+region = Rect2(32, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d4iro"]
+atlas = ExtResource("2_vi38g")
+region = Rect2(48, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m1f00"]
+atlas = ExtResource("2_vi38g")
+region = Rect2(64, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_svvpk"]
+atlas = ExtResource("2_vi38g")
+region = Rect2(80, 80, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bvg1g"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cujw4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4juki")
+}],
+"loop": true,
+"name": &"Heal",
+"speed": 2.5
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ckwrp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7plbo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8infs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d4iro")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m1f00")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_svvpk")
+}],
+"loop": true,
+"name": &"Walking",
+"speed": 8.0
+}]
+
+[node name="BishopUnit" type="CharacterBody2D" groups=["Healer"]]
+script = ExtResource("1_ybt67")
+movement_speed = 600.0
+health = 10.0
+healing_power = 3.5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ybt67")
+disabled = true
+
+[node name="HitBox" type="Area2D" parent="." groups=["Unit"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_7gxj0")
+debug_color = Color(0.956995, 0.209014, 1.92523e-07, 0.42)
+
+[node name="HealingArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HealingArea"]
+shape = SubResource("CircleShape2D_ybt67")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_bvg1g")
+animation = &"Heal"
+
+[node name="HealthLabel" type="Label" parent="."]
+offset_left = -16.0
+offset_top = 27.0
+offset_right = 24.0
+offset_bottom = 50.0
+
+[node name="HitTimer" type="Timer" parent="."]
+wait_time = 0.25
+
+[node name="HealTimer" type="Timer" parent="."]
+wait_time = 2.5
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_postprocessing = 1
+debug_enabled = true
+
+[connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]
+[connection signal="area_exited" from="HitBox" to="." method="_on_hit_box_area_exited"]
+[connection signal="area_entered" from="HealingArea" to="." method="_on_healing_area_area_entered"]
+[connection signal="area_exited" from="HealingArea" to="." method="_on_healing_area_area_exited"]
+[connection signal="timeout" from="HitTimer" to="." method="_on_hit_timer_timeout"]
+[connection signal="timeout" from="HealTimer" to="." method="_on_heal_timer_timeout"]
+[connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]

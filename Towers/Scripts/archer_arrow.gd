@@ -1,5 +1,7 @@
 extends Node2D
 
+var user # Owner of the arrow
+
 var direction : Vector2
 
 var speed : float = 20.0

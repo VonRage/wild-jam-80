@@ -1,16 +1,16 @@
 [gd_scene load_steps=4 format=3 uid="uid://djcof2kldh4s7"]
 
-[ext_resource type="Texture2D" uid="uid://bk4c806yyxadg" path="res://Art/Temporarily-AracherUnits/Arrow/1.png" id="1_0gvg2"]
 [ext_resource type="Script" uid="uid://dspnqqnrkdh5i" path="res://Towers/Scripts/archer_arrow.gd" id="1_s5h7c"]
+[ext_resource type="Texture2D" uid="uid://bqukqr265bi0w" path="res://Art/Objects/Arrow.png" id="2_s5h7c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s5h7c"]
-size = Vector2(4, 14)
+size = Vector2(4, 12)
 
 [node name="ArcherArrow" type="Node2D"]
 script = ExtResource("1_s5h7c")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_0gvg2")
+texture = ExtResource("2_s5h7c")
 
 [node name="HitBox" type="Area2D" parent="." groups=["Projectiles"]]
 

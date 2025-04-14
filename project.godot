@@ -11,13 +11,17 @@ config_version=5
 [application]
 
 config/name="wild-jam-80"
-run/main_scene="uid://bbn3yxey6kee0"
+run/main_scene="uid://o8m0ik4qpslb"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 Global="*res://Main/Scripts/global.gd"
+
+[display]
+
+window/size/always_on_top=true
 
 [rendering]
 

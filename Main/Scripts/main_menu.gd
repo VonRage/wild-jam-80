@@ -12,7 +12,7 @@ func _process(delta: float) -> void:
 
 
 func _on_play_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://Levels/Scenes/level_1.tscn") # Change this later with a transition
+	pass # Replace with function body.
 
 
 func _on_credits_button_pressed() -> void:
@@ -20,4 +20,4 @@ func _on_credits_button_pressed() -> void:
 
 
 func _on_quit_button_pressed() -> void:
-	get_tree().quit()
+	pass # Replace with function body.
