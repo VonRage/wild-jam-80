@@ -1,0 +1,135 @@
+[gd_scene load_steps=15 format=3 uid="uid://cwuretoiufeju"]
+
+[ext_resource type="Texture2D" uid="uid://cmhdh40g0dm0a" path="res://Art/Units/All_Units.png" id="1_0thxl"]
+[ext_resource type="Script" uid="uid://cosuhxaeyg4oj" path="res://Units/Scripts/queen_unit.gd" id="1_7c67o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7c67o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dbvjc"]
+size = Vector2(20, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dbvjc"]
+atlas = ExtResource("1_0thxl")
+region = Rect2(0, 128, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yxp7w"]
+atlas = ExtResource("1_0thxl")
+region = Rect2(0, 144, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5pc8b"]
+atlas = ExtResource("1_0thxl")
+region = Rect2(16, 144, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7gmv8"]
+atlas = ExtResource("1_0thxl")
+region = Rect2(32, 144, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wgtns"]
+atlas = ExtResource("1_0thxl")
+region = Rect2(48, 144, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ohvk"]
+atlas = ExtResource("1_0thxl")
+region = Rect2(64, 144, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wrh58"]
+atlas = ExtResource("1_0thxl")
+region = Rect2(80, 144, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yxp7w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dbvjc")
+}],
+"loop": true,
+"name": &"Attacking",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yxp7w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5pc8b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7gmv8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wgtns")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ohvk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wrh58")
+}],
+"loop": true,
+"name": &"Walking",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5pc8b"]
+size = Vector2(12, 6)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7c67o"]
+radius = 41.0122
+
+[node name="QueenUnit" type="CharacterBody2D"]
+script = ExtResource("1_7c67o")
+movement_speed = 1500.0
+damage = 2.0
+health = 8.0
+max_health = 8.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_7c67o")
+disabled = true
+
+[node name="HitBox" type="Area2D" parent="." groups=["Unit"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_dbvjc")
+debug_color = Color(0.956995, 0.209014, 1.92523e-07, 0.42)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_yxp7w")
+animation = &"Attacking"
+
+[node name="HealingArea" type="Area2D" parent="." groups=["CanBeHealed"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HealingArea"]
+position = Vector2(0, 13)
+shape = SubResource("RectangleShape2D_5pc8b")
+
+[node name="ShootArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShootArea"]
+shape = SubResource("CircleShape2D_7c67o")
+
+[node name="AttackTimer" type="Timer" parent="."]
+
+[node name="HealthLabel" type="Label" parent="."]
+offset_left = -16.0
+offset_top = 27.0
+offset_right = 24.0
+offset_bottom = 50.0
+
+[node name="HitTimer" type="Timer" parent="."]
+wait_time = 0.25
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_postprocessing = 1
+debug_enabled = true
+
+[node name="ShootPosition" type="Marker2D" parent="."]
+
+[connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]
+[connection signal="area_exited" from="HitBox" to="." method="_on_hit_box_area_exited"]
+[connection signal="area_entered" from="ShootArea" to="." method="_on_shoot_area_area_entered"]
+[connection signal="area_exited" from="ShootArea" to="." method="_on_shoot_area_area_exited"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
+[connection signal="timeout" from="HitTimer" to="." method="_on_hit_timer_timeout"]
